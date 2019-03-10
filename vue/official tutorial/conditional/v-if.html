@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>v-if 实例</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <!--v-if -->
+    <div id="app1">
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <h1 v-else>Oh no</h1>
+    </div>
+    <!--在Template元素上使用v-if条件渲染分组-->
+    <div id="app2">
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>Paragraph 1</p>
+            <p>Paragraph 2</p>
+        </template>
+    </div>
+    <!-- v-else -->
+    <div id="app3">
+        <div v-if="Math.random()>0.5">
+            Now you see me
+        </div>
+        <div v-else>
+            Now you don't
+        </div>
+    </div>
+    <!--v-else-if -->
+    <div id="app4">
+        <div v-if="type==='A'">
+            A
+        </div>
+        <div v-else-if="type==='B'">
+            B
+        </div>
+        <div v-else-if="type==='C'">
+            C
+        </div>
+        <div v-else>
+            Not A/B/C
+        </div>
+    </div>
+    <!--用Key管理可服用的元素-->
+    <div id="app5">
+        <template v-if="loginType==='username'">
+            <label>username</label>
+            <input placeholder="Enter your username" />
+        </template>
+        <template v-else>
+            <label>email</label>
+            <input placeholder="Enter your email address" />
+        </template>
+        <button v-on:click="toggleLoginType">Toggle login type</button>
+    </div>
+</body>
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            awesome: false,
+        }
+    });
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            ok: true
+        }
+    })
+    var app3 = new Vue({
+        el: '#app3',
+    })
+    var app4 = new Vue({
+        el: '#app4',
+        data: {
+            type: 'A'
+        }
+    })
+    var app5 = new Vue({
+        el: '#app5',
+        data: {
+            loginType: 'username'
+        },
+        methods: {
+            toggleLoginType: function () {
+                return this.loginType = this.loginType === 'username' ? 'email' : 'username';
+            }
+        },
+    })
+</script>
+
+</html>

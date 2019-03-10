@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Class与Style绑定-绑定内联样式</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <!--数组语法 -->
+    <div id="app1">
+        <div v-bind:style="[baseStyles, overridingStyles]"></div>
+    </div>
+    <!--自动添加前缀-->
+    <div id="app2">
+        <div v-bind:style:transform=""></div>
+    </div>
+    <!--多重值 -->
+    <div id="app3">
+        <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+    </div>
+</body>
+
+<script>
+
+</script>
+
+</html>
