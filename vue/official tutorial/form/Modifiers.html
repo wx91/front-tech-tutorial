@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>表单输入绑定-值绑定</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app1">
+        <!-- 在“change”时而非“input”时更新 -->
+        <input v-model.lazy="msg" />
+        <label>{{msg}}</label>
+    </div>
+    <!--如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符：-->
+    <div id="app2">
+        <input v-model.number="age" type="number" />
+        <label>{{age}}</label>
+    </div>
+    <div id="app3">
+        <!--如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符：-->
+        <input v-model.trim="msg">
+        <label>{{msg}}</label>
+    </div>
+</body>
+
+<script>
+    var app1 = new Vue({
+        el: '#app1',
+        data: {
+            msg: ''
+        }
+    });
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            age: '1'
+        }
+    });
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            msg: ''
+        }
+    })
+</script>
+
+</html>

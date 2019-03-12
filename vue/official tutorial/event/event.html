@@ -26,32 +26,68 @@
     <!--事件修饰符 -->
     <div id="app">
         <!-- 阻止单击事件继续传播 -->
-        <a v-on:click="doThis"></a>
+        <!-- <a v-on:click="doThis"></a> -->
         <!-- 提交事件不再重载页面 -->
-        <form v-on:submit.prevent="onSubmit"></form>
+        <!-- <form v-on:submit.prevent="onSubmit"></form> -->
         <!-- 修饰符可以串联 -->
-        <a v-on:click.stop.prevent="doThat"></a>
+        <!-- <a v-on:click.stop.prevent="doThat"></a> -->
         <!-- 只有修饰符 -->
-        <form v-on:submit.prevent></form>
+        <!-- <form v-on:submit.prevent></form> -->
 
         <!-- 添加事件监听器时使用事件捕获模式 -->
         <!-- 即元素自身触发的事件先在此处理，然后才交由内部元素进行处理 -->
-        <div v-on:click.capture="doThis">...</div>
+        <!-- <div v-on:click.capture="doThis">...</div> -->
 
         <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
         <!-- 即事件不是从内部元素触发的 -->
-        <div v-on:click.self="doThat">...</div>
+        <!-- <div v-on:click.self="doThat">...</div> -->
         <!--v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击。-->
-        <!-- 点击事件将只会触发一次 -->
-        <a v-on:click.once="doThis"></a>
-        <!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+        <!-- 2.1.4 新增点击事件将只会触发一次 -->
+        <!-- <a v-on:click.once="doThis"></a> -->
+        <!-- 2.3.0 新增 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
         <!-- 而不会等待 `onScroll` 完成  -->
         <!-- 这其中包含 `event.preventDefault()` 的情况 -->
-        <div v-on:scroll.passive="onScroll">...</div>
+        <!-- <div v-on:scroll.passive="onScroll">...</div> -->
     </div>
-    <div id="app4">
+    <!-- 按键修饰符-->
+    <div>
         <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
-        <input v-on:keyup.enter="submit">
+        <!-- <input v-on:keyup.enter="submit"> -->
+        <!--你可以直接将 KeyboardEvent.key 暴露的任意有效按键名转换为 kebab-case 来作为修饰符。-->
+        <!-- <input v-on:keyup.page-down="onPageDown"> -->
+        <!-- 在上述示例中，处理函数只会在 $event.key 等于 PageDown 时被调用。 -->
+    </div>
+    <!--按键码-->
+    <div>
+        <!-- 为了在必要的情况下支持旧浏览器，Vue 提供了绝大多数常用的按键码的别名：
+        .enter
+        .tab
+        .delete (捕获“删除”和“退格”键)
+        .esc
+        .space
+        .up
+        .down
+        .left
+        .right
+        你还可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+         可以使用 `v-on:keyup.f1`
+        Vue.config.keyCodes.f1 = 112 -->
+        <!-- .exact 修饰符
+        2.5.0 新增
+        .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。-->
+        <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+        <!-- <button @click.ctrl="onClick">A</button> -->
+        <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+        <!-- <button @click.ctrl.exact="onCtrlClick">A</button> -->
+        <!-- 没有任何系统修饰符被按下的时候才触发 -->
+        <!-- <button @click.exact="onClick">A</button> -->
+        <!--
+        鼠标按钮修饰符
+        2.2.0 新增
+        .left
+        .right
+        .middle
+        这些修饰符会限制处理函数仅响应特定的鼠标按钮。 -->
     </div>
 </body>
 <script>
